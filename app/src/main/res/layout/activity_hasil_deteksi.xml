@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_deteksi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCF5EE">
+
+    <RelativeLayout
+        android:id="@+id/frame_18"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/navbar_border">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/playfair_display_bold"
+            android:text="Deteksi Area Tubuh"
+            android:textColor="#86A788"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/hasil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        android:text="Hasil"
+        android:textColor="#86A788"
+        android:textFontWeight="600"
+        android:textSize="20sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rectangle_4"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="116dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#FCF5EE">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:id="@+id/frame_7"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/frame_7">
+
+                <TextView
+                    android:id="@+id/tv_hasil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:letterSpacing="0.05"
+                    android:text="NORMAL"
+                    android:textColor="#594100"
+                    android:textFontWeight="900"
+                    android:textSize="28dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/confidence_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frame_7"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter"
+                android:text="Skor Deteksi Keseluruhan:"
+                android:textColor="#594100"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_confidence_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/confidence_"
+                android:layout_marginTop="4dp"
+                android:text="0%"
+                android:textSize="40sp"
+                android:textColor="#594100"
+                android:fontFamily="@font/inter"
+                android:textFontWeight="900"
+                android:gravity="center" />
+
+            <View
+                android:id="@+id/line_3"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_below="@id/tv_confidence_value"
+                android:layout_marginTop="16dp"
+                android:background="#E3E3E3" />
+
+            <TextView
+                android:id="@+id/tv_hasil_kalimat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line_3"
+                android:layout_marginTop="16dp"
+                android:text="Menganalisis data..."
+                android:textSize="14sp"
+                android:textColor="#594100"
+                android:fontFamily="@font/inter"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tv_hasil_deteksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_hasil_kalimat"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="• Konjungtiva: 0%\n• Kuku: 0%\n• Telapak Tangan: 0%"
+                android:textSize="14sp"
+                android:textColor="#594100"
+                android:fontFamily="@font/inter_semibold"
+                android:lineSpacingExtra="4dp"
+                android:gravity="left" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/btn_deteksi_kembali"
+        android:layout_width="332dp"
+        android:layout_height="56dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_green"
+        android:text="Deteksi Kembali"
+        android:textColor="#FFFECE"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true" />
+
+</RelativeLayout>

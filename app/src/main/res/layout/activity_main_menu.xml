@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCF5EE">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="145dp"
+        android:layout_height="202dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="171dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter" />
+
+    <!-- Button Mulai Deteksi -->
+    <TextView
+        android:id="@+id/btn_mulai_deteksi"
+        android:layout_width="331dp"
+        android:layout_height="56dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="459dp"
+        android:background="@drawable/button_green"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:text="Mulai Deteksi"
+        android:textColor="#FFFECE"
+        android:foreground="?attr/selectableItemBackground"
+        android:textSize="16sp" />
+
+    <!-- Button Tentang Anemia -->
+    <TextView
+        android:id="@+id/btn_tentang_anemia"
+        android:layout_width="331dp"
+        android:layout_height="56dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="539dp"
+        android:background="@drawable/button_green"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:text="Tentang Anemia"
+        android:textColor="#FFFECE"
+        android:foreground="?attr/selectableItemBackground"
+        android:textSize="16sp" />
+
+</RelativeLayout>
