@@ -104,11 +104,10 @@ public class DeteksiTelapakActivity extends AppCompatActivity {
 
                 cameraProvider.unbindAll();
 
-                // [BARU] Simpan ke variabel camera dan aktifkan Zoom
+                //Simpan ke variabel camera dan aktifkan Zoom
                 androidx.camera.core.Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture);
 
-                // Zoom lebih rendah dari konjungtiva (0.8f) karena area telapak lebih luas,
-                // cukup di-zoom sedikit agar telapak tetap utuh masuk frame
+                //Zoom lebih rendah dari konjungtiva (0.8f) karena area telapak lebih luas, cukup di-zoom sedikit agar telapak tetap utuh masuk frame
                 camera.getCameraControl().setLinearZoom(0.4f);
 
             } catch (ExecutionException | InterruptedException e) {

@@ -19,11 +19,11 @@ public class TFLiteHelper {
     private int imageSizeY;
     private boolean isNCHW = false; // Penanda format export YOLOv8
 
-    // [BARU] Kelas hasil klasifikasi, memisahkan confidence deteksi dan skor Anemia
+    //Kelas hasil klasifikasi, memisahkan confidence deteksi dan skor Anemia
     public static class ClassificationResult {
         public final float probAnemia;
         public final float probNormal;
-        public final float confidence; // nilai tertinggi antara kedua kelas, dipakai untuk cek "area terdeteksi"
+        public final float confidence; //nilai tertinggi antara kedua kelas, dipakai untuk cek "area terdeteksi"
 
         public ClassificationResult(float probAnemia, float probNormal) {
             this.probAnemia = probAnemia;
@@ -32,7 +32,7 @@ public class TFLiteHelper {
         }
     }
 
-    // Inisialisasi model
+    //Inisialisasi model
     public TFLiteHelper(Context context, String modelName) throws IOException {
         MappedByteBuffer tfliteModel = FileUtil.loadMappedFile(context, modelName);
         Interpreter.Options options = new Interpreter.Options();
@@ -54,7 +54,7 @@ public class TFLiteHelper {
         }
     }
 
-    // [BARU] Fungsi utama klasifikasi — mengembalikan objek hasil, bukan 1 angka tunggal
+    //Fungsi utama klasifikasi — mengembalikan objek hasil, bukan 1 angka tunggal
     public ClassificationResult classifyImageDetailed(Bitmap bitmap) {
         if (interpreter == null) return new ClassificationResult(0.0f, 0.0f);
 
@@ -91,8 +91,7 @@ public class TFLiteHelper {
         float probabilitasAnemia = output[0][0];
         float probabilitasNormal = output[0][1];
 
-        // [DIHAPUS] Peredaman ×0.1 yang lama — skor Anemia sekarang selalu nilai asli dari softmax,
-        // sehingga konsisten dengan definisi P pada formula Weighted Decision Fusion (4.1)
+        //Peredaman ×0.1 yang lama — skor Anemia sekarang selalu nilai asli dari softmax, sehingga konsisten dengan definisi P pada formula Weighted Decision Fusion (4.1)
         return new ClassificationResult(probabilitasAnemia, probabilitasNormal);
     }
 

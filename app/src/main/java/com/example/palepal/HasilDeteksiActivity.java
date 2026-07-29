@@ -2,10 +2,10 @@ package com.example.palepal;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable; // Tambahan untuk mengatur sudut kotak
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.RelativeLayout; // Tambahan untuk memanipulasi kotak background
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,8 +45,8 @@ public class HasilDeteksiActivity extends AppCompatActivity {
         //Masukkan data angka ke UI
         tvConfidenceValue.setText(persenAkhir + "%");
 
-        // Rincian skor per area — pakai istilah "skor indikasi" bukan "confidence"
-        // supaya lebih mudah dipahami pengguna awam
+        //Rincian skor per area — pakai istilah "skor indikasi" bukan "confidence"
+        //supaya lebih mudah dipahami pengguna awam
         String listRincian =
                 "• Konjungtiva Mata: " + Math.round(confKonjungtiva * 100) + "%\n" +
                 "• Kuku: " + Math.round(confKuku * 100) + "%\n" +
@@ -61,30 +61,22 @@ public class HasilDeteksiActivity extends AppCompatActivity {
 
         //Atur Perubahan Visual Berdasarkan Hasil
         if (skorAkhir >= 0.50f) {
-            // JIKA TERINDIKASI ANEMIA
+            //terindikasi anemia
             tvHasil.setText("ANEMIA");
-
-            // Ubah teks menjadi warna background aplikasi (#FCF5EE)
             tvHasil.setTextColor(Color.parseColor("#FCF5EE"));
-
-            // Ubah kotak background menjadi merah
             frame7.setBackground(shapeMerah);
 
             tvHasilKalimat.setText("Ditemukan indikasi pucat pada beberapa area tubuh. Disarankan untuk berkonsultasi dengan tenaga medis.");
         } else {
-            // JIKA NORMAL
+            //jika hasil normal
             tvHasil.setText("NORMAL");
-
-            // Teks tetap coklat bawaan
             tvHasil.setTextColor(Color.parseColor("#594100"));
-
-            // Kembalikan kotak background ke gambar bawaan XML (biru muda)
             frame7.setBackgroundResource(R.drawable.frame_7);
 
             tvHasilKalimat.setText("Tidak terdeteksi tanda-tanda pucat yang signifikan.");
         }
 
-        // 6. Navigasi Tombol
+        //Navigasi Tombol
         btnBack.setOnClickListener(v -> finish());
 
         btnDeteksiKembali.setOnClickListener(v -> {

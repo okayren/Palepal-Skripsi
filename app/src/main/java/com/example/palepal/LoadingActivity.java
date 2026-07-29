@@ -18,7 +18,7 @@ public class LoadingActivity extends AppCompatActivity {
         Intent intentMasuk = getIntent();
         String nextScreen = intentMasuk.getStringExtra("next_screen");
 
-        // Log ini sangat penting untuk kamu cek di Logcat
+        //Log sangat penting untuk kamu cek di Logcat
         Log.d(TAG, "Loading menerima perintah ke: " + nextScreen);
 
         float skorKuku = intentMasuk.getFloatExtra("skor_kuku", 0.0f);
@@ -35,18 +35,18 @@ public class LoadingActivity extends AppCompatActivity {
             } else if ("hasil".equals(nextScreen)) {
                 intentKeluar = new Intent(LoadingActivity.this, HasilDeteksiActivity.class);
             } else {
-                // JIKA ERROR ATAU DATA KOSONG, KEMBALIKAN KE MENU UTAMA (Contoh)
+                //jika error, langsung ke halaman utama
                 Log.e(TAG, "Navigasi gagal, nextScreen tidak dikenal: " + nextScreen);
                 intentKeluar = new Intent(LoadingActivity.this, MainMenuActivity.class);
             }
 
-            // Meneruskan data
+            //meneruskan data
             intentKeluar.putExtra("skor_kuku", skorKuku);
             intentKeluar.putExtra("skor_telapak", skorTelapak);
             intentKeluar.putExtra("skor_konjungtiva", skorKonjungtiva);
 
             startActivity(intentKeluar);
-            finish(); // Penting agar user tidak bisa kembali ke layar loading
+            finish(); //penting agar user tidak bisa kembali ke layar loading
 
         }, 2000);
     }

@@ -4,7 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Matrix; // Tambahan untuk rotasi
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,7 +57,7 @@ public class DeteksiKukuActivity extends AppCompatActivity {
         TextView btnAmbilGambar = findViewById(R.id.btn_ambil_gambar_kuku);
         viewFinder = findViewById(R.id.group_13);
 
-        // [BARU] Inisialisasi tombol Flip Camera
+        //Inisialisasi tombol Flip Camera
         ImageView btnFlipCamera = findViewById(R.id.btnFlipCamera);
 
         cameraExecutor = Executors.newSingleThreadExecutor();
@@ -71,7 +71,7 @@ public class DeteksiKukuActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
-        // [BARU] Aksi saat tombol Flip ditekan
+        //Aksi saat tombol Flip ditekan
         btnFlipCamera.setOnClickListener(v -> {
             if (lensFacing == CameraSelector.LENS_FACING_BACK){
                 lensFacing = CameraSelector.LENS_FACING_FRONT;
@@ -147,8 +147,7 @@ public class DeteksiKukuActivity extends AppCompatActivity {
                     hasilKuku = tfLiteHelper.classifyImageDetailed(rotatedBitmap);
                 }
 
-                // Cek "apakah objek terdeteksi" pakai confidence (nilai tertinggi antara Anemia/Normal),
-                // BUKAN skor Anemia mentah — supaya hasil "Normal" yang valid tidak ikut tertolak
+                // Cek "apakah objek terdeteksi" pakai confidence (nilai tertinggi antara Anemia/Normal)
                 if (hasilKuku == null || hasilKuku.confidence < 0.2f) {
                     runOnUiThread(() -> {
                         Toast.makeText(DeteksiKukuActivity.this, "Area tidak terdeteksi. Pastikan kamera fokus pada kuku!", Toast.LENGTH_LONG).show();

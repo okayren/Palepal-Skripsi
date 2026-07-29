@@ -4,7 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Matrix; //untuk rotasi
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,7 +57,7 @@ public class DeteksiKonjungtivaActivity extends AppCompatActivity {
         TextView btnAmbilGambar = findViewById(R.id.btn_ambil_gambar_konjungtiva);
         viewFinder = findViewById(R.id.group_13);
 
-        // [BARU] Inisialisasi tombol Flip Camera
+        //Inisialisasi tombol Flip Camera
         ImageView btnFlipCamera = findViewById(R.id.btnFlipCamera);
 
         cameraExecutor = Executors.newSingleThreadExecutor();
@@ -71,7 +71,7 @@ public class DeteksiKonjungtivaActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
-        // [BARU] Aksi saat tombol Flip ditekan
+        //Aksi saat tombol Flip ditekan
         btnFlipCamera.setOnClickListener(v -> {
             if (lensFacing == CameraSelector.LENS_FACING_BACK){
                 lensFacing = CameraSelector.LENS_FACING_FRONT;
@@ -108,10 +108,10 @@ public class DeteksiKonjungtivaActivity extends AppCompatActivity {
 
                 cameraProvider.unbindAll();
 
-                // [BARU] Simpan ke variabel camera dan aktifkan Zoom
+                //Simpan ke variabel camera dan aktifkan Zoom
                 androidx.camera.core.Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture);
 
-                // Set Zoom ke 30% (0.3f). Kamu bisa ubah angkanya (misal 0.2f atau 0.4f) jika kurang pas
+                // Set Zoom ke 30% (0.3f)
                 camera.getCameraControl().setLinearZoom(0.8f);
 
             } catch (ExecutionException | InterruptedException e) {
@@ -128,13 +128,13 @@ public class DeteksiKonjungtivaActivity extends AppCompatActivity {
                 try {
                     Bitmap originalBitmap = image.toBitmap();
                     int rotationDegrees = image.getImageInfo().getRotationDegrees();
-                    image.close(); // Tutup memori gambar bawaan secepatnya
+                    image.close(); //Tutup memori gambar bawaan secepatnya
 
-                    // [PENTING] Perkecil ukuran dulu agar HP tidak RAM-nya jebol saat diputar
+                    //Perkecil ukuran dulu agar HP tidak RAM-nya jebol saat diputar
                     Bitmap downscaledBitmap = Bitmap.createScaledBitmap(originalBitmap, 224, 224, true);
                     originalBitmap.recycle(); // Buang gambar raksasa asli
 
-                    // Putar gambar yang sudah dikecilkan
+                    //Putar gambar yang sudah dikecilkan
                     Matrix matrix = new Matrix();
                     matrix.postRotate(rotationDegrees);
                     Bitmap rotatedBitmap = Bitmap.createBitmap(downscaledBitmap, 0, 0, downscaledBitmap.getWidth(), downscaledBitmap.getHeight(), matrix, true);
@@ -160,8 +160,7 @@ public class DeteksiKonjungtivaActivity extends AppCompatActivity {
                         hasilMata = tfLiteHelper.classifyImageDetailed(rotatedBitmap);
                     }
 
-                    // Cek confidence konjungtiva sendiri saja — kuku & telapak sudah lolos pengecekan
-                    // confidence masing-masing di activity sebelumnya, tidak perlu dicek ulang di sini
+                    //Cek confidence konjungtiva sendiri saja — kuku & telapak sudah lolos pengecekan confidence masing-masing di activity sebelumnya, tidak perlu dicek ulang di sini
                     if (hasilMata == null || hasilMata.confidence < 0.2f) {
                         runOnUiThread(() -> {
                             Toast.makeText(DeteksiKonjungtivaActivity.this, "Area tidak terdeteksi. Pastikan kamera fokus pada konjungtiva!", Toast.LENGTH_LONG).show();
@@ -171,7 +170,7 @@ public class DeteksiKonjungtivaActivity extends AppCompatActivity {
 
                     final float finalSkorMata = hasilMata.probAnemia;
 
-                    // Bawa ke halaman akhir
+                    //Bawa ke halaman akhir
                     runOnUiThread(() -> {
                         Intent intent = new Intent(DeteksiKonjungtivaActivity.this, LoadingActivity.class);
                         intent.putExtra("next_screen", "hasil");
